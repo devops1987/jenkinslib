@@ -4,6 +4,8 @@
 @Library('jenkinslib') _
 def tools = new org.devops.tools()   //同GitHub上仓库层级目录
 
+//引用vars下的变量
+hello()
 
 //Global 
 String workspace = "/opt/jenkins/workspace"
