@@ -9,6 +9,7 @@ hello()
 
 //Global 
 String workspace = "/opt/jenkins/workspace"
+String buildShell = "${env.buildShell}"   //jenkins 参数化构建中定义了buildShell
 
 //Pipeline
 pipeline {
@@ -54,7 +55,7 @@ pipeline {
 	                    
 	                    mvnHome = tool "mvn3"
 	                    println(mvnHome)
-	                    sh "${mvnHome}/bin/mvn -v"
+			    sh "${mvnHome}/bin/mvn ${buildShell}"
 	                }
 	            }
 	        }
