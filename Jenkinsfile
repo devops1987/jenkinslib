@@ -1,7 +1,7 @@
 #!groovy
 
 //声明引用的library，名字同在Jenkins系统配置下的 Global Pipeline Libraries 的 name
-@Library('jenkinslib'@master) _
+@Library('jenkinslib') _
 def tools = new org.devops.tools()   //同GitHub上仓库层级目录
 def build = new org.devops.build()
 
