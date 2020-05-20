@@ -1,14 +1,16 @@
 #!groovy
 
 //声明引用的library，名字同在Jenkins系统配置下的 Global Pipeline Libraries 的 name
-@Library('jenkinslib') _
+@Library('jenkinslib'@master) _
 def tools = new org.devops.tools()   //同GitHub上仓库层级目录
+def build = new org.devops.build()
 
 //引用vars下的变量
 hello()
 
 //Global 
 String workspace = "/opt/jenkins/workspace"
+String buildType = "${env.buildType}"   //jenkins 参数化构建中定义了buildType
 String buildShell = "${env.buildShell}"   //jenkins 参数化构建中定义了buildShell
 
 //Pipeline
@@ -53,9 +55,10 @@ pipeline {
 	                    tools.PrintMsg("开始应用打包",'green')
 	                    println('应用打包')
 	                    
-	                    mvnHome = tool "mvn3"
-	                    println(mvnHome)
-			    sh "${mvnHome}/bin/mvn ${buildShell}"
+	                    //mvnHome = tool "mvn3"
+	                    //println(mvnHome)
+			    //sh "${mvnHome}/bin/mvn ${buildShell}"
+			    build.Build(buildType,buildShell)
 	                }
 	            }
 	        }
